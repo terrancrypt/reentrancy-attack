@@ -12,7 +12,7 @@ contract ReentrancyEtherFixed is ReentrancyGuard {
     mapping(address user => uint amount) private s_balances;
 
     event Deposited(address, uint);
-    event Withdrawed(address, uint);
+    event Withdrawn(address, uint);
 
     function deposit() public payable {
         s_balances[msg.sender] += msg.value;
@@ -38,7 +38,7 @@ contract ReentrancyEtherFixed is ReentrancyGuard {
             revert ReentrancyEther_SendingEtherError();
         }
 
-        emit Withdrawed(msg.sender, balance);
+        emit Withdrawn(msg.sender, balance);
     }
 
     function getBalanceOf(address _of) external view returns (uint) {
